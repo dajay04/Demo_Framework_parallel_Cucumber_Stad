@@ -246,7 +246,7 @@
         <version>3.1.2</version>
         <configuration>
           <includes>
-            <include>**/CucumberTestRunner.java</include>
+            <include>**/RunCucumberTest.java</include>
           </includes>
           <properties>
             <configurationParameters>
