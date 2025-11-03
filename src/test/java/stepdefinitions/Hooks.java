@@ -2,6 +2,8 @@ package stepdefinitions;
 
 import com.aventstack.extentreports.*;
 import com.aventstack.extentreports.reporter.ExtentHtmlReporter;
+import com.aventstack.extentreports.reporter.ExtentSparkReporter;
+import com.aventstack.extentreports.reporter.configuration.Theme;
 import io.cucumber.java.*;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.*;
@@ -25,17 +27,30 @@ public class Hooks {
 
     @BeforeAll
     public static void setupExtentReport() {
-        ExtentHtmlReporter htmlReporter = new ExtentHtmlReporter("reports/extent-report.html");
+        // Create Spark Reporter
+        ExtentSparkReporter spark = new ExtentSparkReporter("reports/extent-report.html");
+
+        // Optional configurations
+        spark.config().setDocumentTitle("Automation Report");
+        spark.config().setReportName("EWF QA Automation Execution");
+        spark.config().setTheme(Theme.STANDARD); // or Theme.DARK
+        spark.config().setOfflineMode(true); // <--- CRITICAL: makes it self-contained (works on VPN)
+
+        // Attach reporter
         extent = new ExtentReports();
-        extent.attachReporter(htmlReporter);
+        extent.attachReporter(spark);
+
+        // System info (optional)
         extent.setSystemInfo("OS", System.getProperty("os.name"));
         extent.setSystemInfo("Java Version", System.getProperty("java.version"));
+        extent.setSystemInfo("User", System.getProperty("user.name"));
     }
 
     @Before
     public void beforeScenario(Scenario scenario) {
         ExtentTest test = extent.createTest(scenario.getName());
         extentTest.set(test);
+
 
         String browser = PropertiesUtil.getProperty("browser");
         String headlessProp = PropertiesUtil.getProperty("headless");
