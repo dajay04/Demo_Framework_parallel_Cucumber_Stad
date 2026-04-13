@@ -11,5 +11,5 @@ Feature: Login Functionality with InValid Data
     Examples:
       | UserName  | Password       |
       | Admin     | admin123123412 |
-      | testAdmin | admin123       |
+      | testAdmin | asdsa          |
       | testAdmin | admin123123412 |
