@@ -26,6 +26,10 @@ public class BaseTest
         ((JavascriptExecutor) driver).executeScript("arguments[0].click();", el);
         System.out.println("Element clicked1!!");
     }
+
+    public void jsClick(WebElement locator) {
+        ((JavascriptExecutor) driver).executeScript("arguments[0].click();", locator);
+    }
     public void doubleClick(By locator) {
         WebElement el = wait.until(ExpectedConditions.elementToBeClickable(locator));
         new Actions(driver).doubleClick(el).perform();

@@ -19,7 +19,6 @@ public class DashboardPage extends BaseTest
     //3. Identify webelements
     private By dashBoardElementText = By.xpath("//h6[contains(.,'Dashboard')]");
     public By menuItems = By.cssSelector("ul.oxd-main-menu > li span.oxd-text");
-    public By menuItem = By.cssSelector("ul.oxd-main-menu ");
     //4. Actions
 
     public void waitTillDashboardTextAppear()
