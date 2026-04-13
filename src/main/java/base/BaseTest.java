@@ -24,9 +24,10 @@ public class BaseTest
     public void jsClick(By locator) {
         WebElement el = driver.findElement(locator);
         ((JavascriptExecutor) driver).executeScript("arguments[0].click();", el);
+        System.out.println("Element clicked1!!");
     }
-    public void jsClick(WebElement locator)
-    {
+
+    public void jsClick(WebElement locator) {
         ((JavascriptExecutor) driver).executeScript("arguments[0].click();", locator);
     }
     public void doubleClick(By locator) {
